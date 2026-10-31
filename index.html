@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LaunchPad helps students discover opportunities and manage applications in one place.">
+  <title>LaunchPad — Student Opportunity Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="LaunchPad home">
+        <span class="brand-mark">↗</span><span>launch<span class="brand-light">pad</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">▦</span> Overview</button>
+        <button class="nav-item" data-view="discover"><span class="nav-icon">⌕</span> Discover <span class="nav-count" id="discoverCount">12</span></button>
+        <button class="nav-item" data-view="applications"><span class="nav-icon">▤</span> My applications</button>
+        <button class="nav-item" data-view="saved"><span class="nav-icon">♡</span> Saved opportunities</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip">
+          <div class="tip-spark">✦</div>
+          <strong>Small steps, big future.</strong>
+          <p>Track your progress. Keep showing up.</p>
+          <div class="tip-progress"><span id="tipProgress"></span></div>
+          <small id="tipProgressLabel">0 applications tracked</small>
+        </div>
+        <button class="nav-item" id="dataToolsBtn"><span class="nav-icon">⇅</span> Data tools</button>
+        <div class="profile-mini">
+          <div class="avatar">AG</div>
+          <div><strong>Atharva's workspace</strong><small>Student account</small></div>
+          <button class="icon-btn" id="profileMenuBtn" aria-label="Workspace options">•••</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbCurrent">Overview</strong></div>
+        <div class="topbar-actions">
+          <div class="today-chip"><span class="status-dot"></span><span id="todayLabel">Your next step starts today</span></div>
+          <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">◐</button>
+          <button class="primary-btn compact" id="addOpportunityTop">＋ Add opportunity</button>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <section class="view active" id="view-overview">
+          <div class="welcome-row">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> YOUR CAREER, IN MOTION</div>
+              <h1>Make your next move<span class="accent-dot">.</span></h1>
+              <p class="page-subtitle">A little progress today can open a big door tomorrow.</p>
+            </div>
+            <div class="welcome-date"><span class="date-icon">◷</span><div><strong id="fullDate">Monday, 31 October</strong><small>One opportunity at a time</small></div></div>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card stat-primary">
+              <div class="stat-top"><span>Applications tracked</span><span class="stat-icon">↗</span></div>
+              <div class="stat-number" id="statApplications">0</div>
+              <div class="stat-foot"><span class="stat-dot"></span><span id="statApplicationFoot">Your journey starts here</span></div>
+              <div class="stat-watermark">01</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span>In progress</span><span class="stat-icon icon-lilac">◷</span></div>
+              <div class="stat-number" id="statInProgress">0</div>
+              <div class="stat-foot"><span class="mini-line"></span>Applications needing follow-up</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span>Saved for later</span><span class="stat-icon icon-peach">♡</span></div>
+              <div class="stat-number" id="statSaved">0</div>
+              <div class="stat-foot"><span class="mini-line peach-line"></span>Ideas worth keeping close</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span>Interviews / offers</span><span class="stat-icon icon-green">✦</span></div>
+              <div class="stat-number" id="statWins">0</div>
+              <div class="stat-foot"><span class="mini-line green-line"></span>Every step counts</div>
+            </article>
+          </div>
+
+          <div class="content-grid">
+            <section class="panel featured-panel">
+              <div class="panel-heading">
+                <div><div class="eyebrow small-eyebrow">CURATED FOR YOU</div><h2>Opportunities to explore</h2></div>
+                <button class="text-btn" data-go="discover">View all <span>↗</span></button>
+              </div>
+              <div class="opportunity-list" id="featuredList"></div>
+            </section>
+            <section class="panel progress-panel">
+              <div class="panel-heading"><div><div class="eyebrow small-eyebrow">YOUR MOMENTUM</div><h2>Application pipeline</h2></div><span class="circle-arrow">↗</span></div>
+              <div class="pipeline-chart" id="pipelineChart"></div>
+              <div class="pipeline-legend">
+                <span><i class="legend-dot applied"></i>Applied</span><span><i class="legend-dot interview"></i>Interview</span><span><i class="legend-dot offer"></i>Offer</span>
+              </div>
+              <div class="panel-divider"></div>
+              <div class="focus-card"><div class="focus-icon">✦</div><div><strong>Stay consistent</strong><p>One quality application beats ten rushed ones.</p></div></div>
+            </section>
+          </div>
+          <section class="panel quick-panel">
+            <div class="panel-heading"><div><div class="eyebrow small-eyebrow">QUICK ACCESS</div><h2>Your next action</h2></div></div>
+            <div class="quick-actions">
+              <button class="quick-action" data-go="discover"><span class="quick-icon violet">⌕</span><span><strong>Find opportunities</strong><small>Explore internships, events and more</small></span><b>→</b></button>
+              <button class="quick-action" data-go="applications"><span class="quick-icon orange">▤</span><span><strong>Update applications</strong><small>Keep your application status current</small></span><b>→</b></button>
+              <button class="quick-action" id="exportQuick"><span class="quick-icon green">⇩</span><span><strong>Export your data</strong><small>Keep a portable backup in XML</small></span><b>→</b></button>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="view-discover">
+          <div class="view-heading">
+            <div><div class="eyebrow"><span class="eyebrow-line"></span> FIND YOUR NEXT CHAPTER</div><h1>Discover opportunities<span class="accent-dot">.</span></h1><p class="page-subtitle">Find internships, hackathons, scholarships and events that move you forward.</p></div>
+            <button class="primary-btn" id="addOpportunityDiscover">＋ Add opportunity</button>
+          </div>
+          <div class="filter-bar">
+            <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search roles, skills, companies..." aria-label="Search opportunities"><kbd>⌘ K</kbd></label>
+            <select id="typeFilter" aria-label="Filter by type"><option value="all">All types</option><option>Internship</option><option>Hackathon</option><option>Scholarship</option><option>Workshop</option><option>Competition</option></select>
+            <select id="modeFilter" aria-label="Filter by mode"><option value="all">Any mode</option><option>Remote</option><option>On-site</option><option>Hybrid</option></select>
+            <select id="sortFilter" aria-label="Sort opportunities"><option value="recommended">Recommended</option><option value="deadline">Deadline soon</option><option value="newest">Recently added</option></select>
+          </div>
+          <div class="filter-meta"><span id="resultsCount">Showing opportunities</span><button class="text-btn" id="clearFilters">Clear filters ↺</button></div>
+          <div class="discover-grid" id="discoverGrid"></div>
+          <div class="empty-state hidden" id="discoverEmpty"><div class="empty-icon">⌕</div><h3>No opportunities found</h3><p>Try a different search or clear your filters.</p><button class="secondary-btn" id="emptyClearFilters">Clear filters</button></div>
+        </section>
+
+        <section class="view" id="view-applications">
+          <div class="view-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> KEEP THE MOMENTUM</div><h1>My applications<span class="accent-dot">.</span></h1><p class="page-subtitle">Your personal command centre for every opportunity you pursue.</p></div><button class="secondary-btn" id="exportApplications">Export XML ↗</button></div>
+          <div class="application-summary" id="applicationSummary"></div>
+          <div class="table-toolbar"><div class="table-tabs" id="applicationTabs"><button class="active" data-status="all">All applications</button><button data-status="Applied">Applied</button><button data-status="Interview">Interview</button><button data-status="Offer">Offer</button><button data-status="Rejected">Closed</button></div><label class="search-box small-search"><span>⌕</span><input id="applicationSearch" type="search" placeholder="Search applications..." aria-label="Search applications"></label></div>
+          <div class="table-wrap"><table class="applications-table"><thead><tr><th>OPPORTUNITY</th><th>STATUS</th><th>DEADLINE</th><th>APPLIED ON</th><th></th></tr></thead><tbody id="applicationsTableBody"></tbody></table></div>
+          <div class="empty-state hidden" id="applicationsEmpty"><div class="empty-icon">▤</div><h3>No applications yet</h3><p>Explore opportunities and add the ones you apply for.</p><button class="primary-btn" data-go="discover">Discover opportunities</button></div>
+        </section>
+
+        <section class="view" id="view-saved">
+          <div class="view-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR SHORTLIST</div><h1>Saved opportunities<span class="accent-dot">.</span></h1><p class="page-subtitle">A shortlist of possibilities you don't want to lose track of.</p></div><span class="saved-count-pill" id="savedCountPill">0 saved</span></div>
+          <div class="discover-grid" id="savedGrid"></div>
+          <div class="empty-state hidden" id="savedEmpty"><div class="empty-icon">♡</div><h3>Your shortlist is waiting</h3><p>Tap the heart on any opportunity to save it here.</p><button class="primary-btn" data-go="discover">Explore opportunities</button></div>
+        </section>
+      </section>
+      <footer class="footer"><span>✦ Built for your next big step.</span><span>LaunchPad <b>·</b> Your career, in motion</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header"><div><div class="eyebrow small-eyebrow">MAKE IT HAPPEN</div><h2 id="modalTitle">Add an opportunity</h2></div><button class="icon-btn" id="closeModal" aria-label="Close dialog">×</button></div>
+      <form id="opportunityForm">
+        <div class="form-grid">
+          <label class="form-field full-field">Opportunity title <input name="title" required maxlength="90" placeholder="e.g. Frontend Developer Intern"></label>
+          <label class="form-field">Company / organiser <input name="company" required maxlength="70" placeholder="e.g. Acme Labs"></label>
+          <label class="form-field">Type <select name="type" required><option>Internship</option><option>Hackathon</option><option>Scholarship</option><option>Workshop</option><option>Competition</option></select></label>
+          <label class="form-field">Mode <select name="mode"><option>Remote</option><option>On-site</option><option>Hybrid</option></select></label>
+          <label class="form-field">Location <input name="location" maxlength="60" placeholder="e.g. Surat, Gujarat"></label>
+          <label class="form-field">Stipend / prize <input name="pay" maxlength="50" placeholder="e.g. ₹12,000/month or Free"></label>
+          <label class="form-field">Deadline <input name="deadline" type="date"></label>
+          <label class="form-field">Application URL <input name="url" type="url" placeholder="https://..."></label>
+          <label class="form-field full-field">Skills / tags <input name="skills" maxlength="120" placeholder="JavaScript, UI design, teamwork"></label>
+          <label class="form-field full-field">Short description <textarea name="description" rows="3" maxlength="260" placeholder="What makes this opportunity interesting?"></textarea></label>
+        </div>
+        <div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancel</button><button type="submit" class="primary-btn">Save opportunity ↗</button></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop hidden" id="statusModalBackdrop">
+    <section class="modal status-modal" role="dialog" aria-modal="true" aria-labelledby="statusModalTitle">
+      <div class="modal-header"><div><div class="eyebrow small-eyebrow">APPLICATION TRACKER</div><h2 id="statusModalTitle">Update application</h2></div><button class="icon-btn" id="closeStatusModal" aria-label="Close dialog">×</button></div>
+      <form id="statusForm"><input type="hidden" name="id"><div class="form-grid">
+        <label class="form-field">Application status <select name="status"><option>Interested</option><option>Applied</option><option>Assessment</option><option>Interview</option><option>Offer</option><option>Rejected</option></select></label>
+        <label class="form-field">Applied on <input name="appliedOn" type="date"></label>
+        <label class="form-field full-field">Follow-up note <textarea name="note" rows="3" maxlength="300" placeholder="Recruiter name, next step, interview prep..."></textarea></label>
+      </div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelStatusModal">Cancel</button><button type="submit" class="primary-btn">Save changes ↗</button></div></form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop hidden" id="dataModalBackdrop">
+    <section class="modal data-modal" role="dialog" aria-modal="true" aria-labelledby="dataModalTitle">
+      <div class="modal-header"><div><div class="eyebrow small-eyebrow">YOUR DATA, YOUR CONTROL</div><h2 id="dataModalTitle">Data tools</h2></div><button class="icon-btn" id="closeDataModal" aria-label="Close dialog">×</button></div>
+      <p class="modal-intro">Export your LaunchPad data to XML for a portable backup, or import a previously exported XML file.</p>
+      <div class="data-tool-row"><div class="data-tool-icon">⇩</div><div><strong>Export backup</strong><p>Download your opportunities, saved items and applications as XML.</p></div><button class="secondary-btn" id="exportXmlBtn">Export XML</button></div>
+      <div class="data-tool-row"><div class="data-tool-icon">⇧</div><div><strong>Import backup</strong><p>Load a LaunchPad XML backup. Imported records will be merged.</p></div><label class="secondary-btn file-label">Choose XML<input type="file" id="importXmlInput" accept=".xml,text/xml"></label></div>
+      <div class="data-tool-row danger-row"><div class="data-tool-icon">↺</div><div><strong>Reset demo data</strong><p>Restore the original sample opportunities. This clears your local changes.</p></div><button class="danger-btn" id="resetDataBtn">Reset</button></div>
+      <p class="privacy-note">This is a browser-only demo. Your data stays in this browser's local storage and is not synced to a server.</p>
+    </section>
+  </div>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+  <input type="file" id="hiddenImportInput" accept=".xml,text/xml" hidden>
+  <script src="app.js"></script>
+</body>
+</html>
